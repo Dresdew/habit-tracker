@@ -9,17 +9,17 @@ import { COMPONENT_COLOR, BACKGROUND_COLOR, COMPONENT_SELECTED_COLOR } from './c
 const AddHabitPanel = () => {
     const dispatch = useDispatch();
 
-    const asyncFunc = async () => {
+    const createHabit = async () => {
         const habit = {
-            id: `@${Math.random()}`,
-            habitText,
+            id: `HABIT_${Math.random()}`,
+            title,
             n
         };
         await AsyncStorage.setItem(habit.id, JSON.stringify(habit))
         dispatch(addHabit({ habit }));
     }
 
-    const [habitText, onHabitTextChange] = React.useState("");
+    const [title, setTitle] = React.useState("");
     const [n, setN] = React.useState(1);
 
     return (
@@ -27,8 +27,8 @@ const AddHabitPanel = () => {
             <Text style={styles.titleText}>Name of the habit</Text>
             <TextInput
                 style={styles.input}
-                onChangeText={onHabitTextChange}
-                value={habitText}
+                onChangeText={setTitle}
+                value={title}
             />
             <Text style={styles.titleText}>Notification every N-th day</Text>
             <TextInput
@@ -42,7 +42,7 @@ const AddHabitPanel = () => {
                     color={COMPONENT_COLOR}
                     style={styles.button}
                     title="create"
-                    onPress={asyncFunc}
+                    onPress={createHabit}
                 />
             </View>
         </ScrollView>

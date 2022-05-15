@@ -7,8 +7,11 @@ const habitSlice = createSlice({
         addHabit(state, action) {
             state.habits = [...state.habits, action.payload.habit]
         },
+        setHabits(state, action) {
+            state.habits = action.payload.habits
+        }
     }
 })
 
-export const { addHabit } = habitSlice.actions
+export const { addHabit, setHabits } = habitSlice.actions
 export default habitSlice.reducer
